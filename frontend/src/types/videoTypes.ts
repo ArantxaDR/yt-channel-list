@@ -6,7 +6,8 @@ export interface Videos {
 	nextPageToken: string;
 	regionCode:    string;
 	pageInfo:      PageInfo;
-	items:         Item[];
+	items: Item[];
+	prevPageToken: string;
 }
 
 export interface Item {

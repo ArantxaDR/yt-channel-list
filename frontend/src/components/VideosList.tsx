@@ -10,18 +10,17 @@ interface Video {
 
 const VideosList = () => {
   const maxResults : number = 10;
-  const { channelId } = useParams<{ channelId: string | undefined }>();
+  const { channelId } = useParams<{ channelId: string }>();
   const [videos, setVideos] = useState<Video[]>([]);
   const [loading, setLoading] = useState(true);
   const [prevPage,setPrevPage] = useState('');
   const [nextPage,setNextPage] = useState('');
   const [currentPage,setCurrentPage] = useState('');
-  //const [totalPages, setTotalPages] = useState(maxResults);
-  
+   
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchYoutubeVideos(channelId, currentPage, maxResults);
+        const data = await fetchYoutubeVideos(channelId!, currentPage, maxResults);
         console.log(data.items);
         setVideos(data.items);
         //console.log(data);
@@ -39,7 +38,7 @@ const VideosList = () => {
     };
 
     fetchData();
-  }, [channelId, currentPage]);
+  }, [channelId, currentPage,nextPage, prevPage]);
 
   return (
     <>
